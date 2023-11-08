@@ -1,0 +1,27 @@
+org: suhanigemini
+app: login
+service: login
+frameworkVersion: '3'
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: dev
+functions:
+  registerUser:
+    handler: registerUser.registerUser
+    timeout: 900
+    events:
+      - httpApi:
+          path: /register
+          method: post
+
+  loginUser:
+    handler: loginUser.loginUser
+    timeout: 900
+    events:
+      - httpApi:
+          path: /login
+          method: post
+plugins:
+  - serverless-offline
+  - serverless-bundle
